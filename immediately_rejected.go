@@ -30,6 +30,6 @@ func newImmediatelyRejected(reason PromiseResult) *immediatelyRejected {
 	return promise
 }
 
-func ImmediatelyRejected(reason PromiseResult) Promise {
+func Reject(reason PromiseResult) Promise {
 	return newImmediatelyRejected(reason)
 }

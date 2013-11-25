@@ -30,10 +30,10 @@ func newImmediatelyFulfilled(value PromiseResult) *immediatelyFulfilled {
 	return promise
 }
 
-func ImmediatelyFulfilled(value PromiseResult) Promise {
+func Fulfil(value PromiseResult) Promise {
 	return newImmediatelyFulfilled(value)
 }
 
 func Empty() Promise {
-	return ImmediatelyFulfilled(nil)
+	return Fulfil(nil)
 }

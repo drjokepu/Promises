@@ -4,7 +4,7 @@ import "testing"
 
 func TestImmediatelyFulfilled(t *testing.T) {
 	initialValue := 500
-	promise := ImmediatelyFulfilled(initialValue)
+	promise := Fulfil(initialValue)
 	promise.Then(func(value PromiseResult) Promise {
 		if value.(int) != initialValue {
 			t.Error("%v != %v", initialValue, value)

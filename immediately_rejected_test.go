@@ -4,7 +4,7 @@ import "testing"
 
 func TestImmediatelyRejected(t *testing.T) {
 	initialValue := "hello"
-	promise := ImmediatelyRejected(initialValue)
+	promise := Reject(initialValue)
 	promise.Then(func(value PromiseResult) Promise {
 		t.Error("promise was resolved")
 		return Empty()
