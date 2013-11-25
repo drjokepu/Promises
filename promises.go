@@ -19,7 +19,7 @@ type Promise interface {
 }
 
 func thenOrFail(promise Promise, thenCallback func(PromiseResult) Promise, failCallback func(PromiseResult) Promise) {
-	
+
 }
 
 func then(promise Promise, callback func(PromiseResult) Promise) Promise {
@@ -27,10 +27,14 @@ func then(promise Promise, callback func(PromiseResult) Promise) Promise {
 	go func() {
 		select {
 		case value := <-promise.onFulfilled():
-			deferred.Resolve(callback(value))
+			if promiseValue, ok := value.(Promise); ok {
+				then(promiseValue, callback)
+			} else {
+				deferred.Resolve(callback(value))
+			}
 			return
 		case reason := <-promise.onRejected():
-			deferred.Reject(newImmediatelyRejected(reason))
+			deferred.Reject(reason)
 		}
 	}()
 	return deferred
