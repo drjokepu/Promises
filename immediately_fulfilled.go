@@ -21,6 +21,10 @@ func (promise *immediatelyFulfilled) Fail(next func(PromiseResult) Promise) Prom
 	return fail(promise, next)
 }
 
+func (promise *immediatelyFulfilled) Done() {
+	done(promise)
+}
+
 func newImmediatelyFulfilled(value PromiseResult) *immediatelyFulfilled {
 	promise := &immediatelyFulfilled{
 		fulfilled: make(chan PromiseResult, 1),

@@ -3,14 +3,14 @@ package promises
 import "testing"
 
 func TestImmediatelyRejected(t *testing.T) {
-	initialValue := "hello"
-	promise := Reject(initialValue)
+	initialReason := "hello"
+	promise := Reject(initialReason)
 	promise.Then(func(value PromiseResult) Promise {
 		t.Error("promise was resolved")
 		return Empty()
 	}).Fail(func(reason PromiseResult) Promise {
-		if reason.(string) != initialValue {
-			t.Error("%v != %v", initialValue, reason)
+		if reason.(string) != initialReason {
+			t.Error("%v != %v", initialReason, reason)
 		}
 		return Empty()
 	})

@@ -36,6 +36,10 @@ func (promise *Deferred) Reject(reason PromiseResult) {
 	})
 }
 
+func (promise *Deferred) Done() {
+	done(promise)
+}
+
 func newDeferred() *Deferred {
 	promise := &Deferred{
 		stateOnce: new(sync.Once),

@@ -21,6 +21,10 @@ func (promise *immediatelyRejected) Fail(next func(PromiseResult) Promise) Promi
 	return fail(promise, next)
 }
 
+func (promise *immediatelyRejected) Done() {
+	done(promise)
+}
+
 func newImmediatelyRejected(reason PromiseResult) *immediatelyRejected {
 	promise := &immediatelyRejected{
 		fulfilled: make(chan PromiseResult, 1),

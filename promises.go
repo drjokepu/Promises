@@ -16,6 +16,7 @@ type Promise interface {
 	onRejected() chan PromiseResult
 	Then(func(PromiseResult) Promise) Promise
 	Fail(func(PromiseResult) Promise) Promise
+	Done()
 }
 
 func thenOrFail(promise Promise, thenCallback func(PromiseResult) Promise, failCallback func(PromiseResult) Promise) {
